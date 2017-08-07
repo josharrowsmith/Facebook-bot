@@ -5,7 +5,8 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const db = mongoose.connect(process.env.MONGODB_URI);
+const db = mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true }));
+//mongoose.connect(`mongodb://localhost:27017/${GITHUB_ISSUE}`, { useMongoClient: true })
 const Movie = require('./models/movie');
 
 const app = express();
