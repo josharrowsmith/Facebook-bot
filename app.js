@@ -151,7 +151,7 @@ function getMovieDetail(userId, field) {
 function findMovie(userId, movieTitle) {
   //https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
   //"http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93"
-  request("https://api.themoviedb.org/3/search/movie?api_key=1ac2e46af3c6445c8f78d27dd6debcc1&query=batman",  function (error, response, body) {
+  request("https://api.themoviedb.org/3/search/movie?api_key=1ac2e46af3c6445c8f78d27dd6debcc1&query=" +  movieTitle,  function (error, response, body) {
     if (error || response.statusCode !== 200) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
@@ -166,7 +166,7 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: movieObj.Title,
+      original_title: movieObj.Title,
       plot: movieObj.Plot,
       date: movieObj.Released,
       runtime: movieObj.Runtime,
