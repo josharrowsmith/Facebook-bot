@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 
-//mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 const db = mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 //mongoose.connect(`mongodb://localhost:27017/${GITHUB_ISSUE}`, { useMongoClient: true })
 const Movie = require('./models/movie');
