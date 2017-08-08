@@ -166,14 +166,14 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      original_title: movieObj.Title,
-      overview: movieObj.Plot,
+      title: omdbapi.Title,
+      plot: movieObj.Plot,
       date: movieObj.Released,
       runtime: movieObj.Runtime,
       director: movieObj.Director,
       cast: movieObj.Actors,
       rating: movieObj.imdbRating,
-      poster_path: movieObj.Poster
+      poster_url: omdbapi.Poster
     };
     const options = { upsert: true };
     Movie
@@ -186,9 +186,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: movieObj.Title,
+                title: omdbapi.Title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: movieObj.Poster === 'N/A' ? 'http://placehold.it/350x150' : movieObj.Poster,
+                image_url: omdbapi.Poster === 'N/A' ? 'http://placehold.it/350x150' : omdbapi.Poster,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
