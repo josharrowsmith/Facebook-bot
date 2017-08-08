@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 
 mongoose.Promise = global.Promise;
-const db = mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
+const db = mongoose.connect("mongodb://josh:yellow@ds035603.mlab.com:35603/spbot", { useMongoClient: true });
 //mongoose.connect(`mongodb://localhost:27017/${GITHUB_ISSUE}`, { useMongoClient: true })
 const Movie = require('./models/movie');
 
