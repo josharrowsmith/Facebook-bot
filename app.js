@@ -147,7 +147,7 @@ function getMovieDetail(userId, field) {
 }
 
 function findMovie(userId, movieTitle) {
-  request("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93", function (error, response, body) {
+  request("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=", function (error, response, body) {
     if (error || response.statusCode !== 200) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
