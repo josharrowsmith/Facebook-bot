@@ -5,6 +5,8 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+
+mongoose.Promise = global.Promise;
 const db = mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 //mongoose.connect(`mongodb://localhost:27017/${GITHUB_ISSUE}`, { useMongoClient: true })
 const Movie = require('./models/movie');
@@ -43,14 +45,7 @@ app.post('/webhook', function (req, res) {
     );
   }
 
-  // It is important to return a 200 response as fast as possible. Facebook will
-  // wait for a 200 before sending you the next message. In high volume
-  // bots, a delay in returning a 200 can cause significant
-  // delays in Facebook delivering messages to your webhook.
-  // If the webhook continues to fail for 8 hours, then Facebook will
-  // send you an alert letting you know that the webhook is being
-  // disabled, then your app will be unsubscribed. Once you’ve fixed
-  // the issues, you must re-add your webhook and re-subscribe the
+
   // app to the page.
   res.sendStatus(200);
 });
