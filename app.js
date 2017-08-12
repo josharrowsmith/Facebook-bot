@@ -151,26 +151,29 @@ function getMovieDetail(userId, field) {
 function findMovie(userId, movieTitle) {
   //https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
   //"http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93"
-  request("https://api.themoviedb.org/3/search/movie?&api_key=1ac2e46af3c6445c8f78d27dd6debcc1&query=" + movieTitle ,  function (error, response, body) {
+  request("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93" function (error, response, body) {
     if (error || response.statusCode !== 200) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
 
-    const themoviedb = JSON.parse(body);
-    console.log(themoviedb);
+    const movieObj = JSON.parse(body);
 
-    if (themoviedb.Response === 'False') {
-      console.log(themoviedb.Error);
-      return sendMessage(userId, { text: themoviedb.Error });
+    if (movieObj.Response === 'False') {
+      console.log(movieObj.Error);
+      return sendMessage(userId, { text: movieObj.Error });
     }
 
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: themoviedb.original_title,
-      plot: themoviedb.overview,
-      date: themoviedb.date,
-      poster_url: themoviedb.poster_path
+      title: movieObj.Title,
+      plot: movieObj.Plot,
+      date: movieObj.Released,
+      runtime: movieObj.Runtime,
+      director: movieObj.Director,
+      cast: movieObj.Actors,
+      rating: movieObj.imdbRating,
+      poster_url: movieObj.Poster
     };
     const options = { upsert: true };
     Movie
@@ -183,9 +186,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: themoviedb.original_title,
+                title: movieObj.Title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: themoviedb.poster_path === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.poster_path,
+                image_url: movieObj.Poster === 'N/A' ? 'http://placehold.it/350x150' : movieObj.Poster,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
