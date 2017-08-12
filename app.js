@@ -168,9 +168,9 @@ function findMovie(userId, movieTitle) {
     const update = {
       user_id: userId,
       title: themoviedb.results[0].original_title,
-      plot: themoviedb.results.overview,
-      date: themoviedb.results.date,
-      poster_url: themoviedb.results.poster_path
+      plot: themoviedb.results[0].overview,
+      date: themoviedb.results[0].date,
+      poster_url: themoviedb.results[0].poster_path
     };
 
 
