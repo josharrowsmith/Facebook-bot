@@ -132,16 +132,9 @@ function processMessage(event) {
         getMovieDetail(senderId, formattedMessage);
         break;
 
-      default:
+        case "movie":
         findMovie(senderId, formattedMessage);
-
-      case 'hello':
-      sendMessage(senderId, { text: `wassup.` });
-
-      case "top 10":
-        TopTen(senderId,formattedMessage);
-
-    }
+}
   } else if (message.attachments) {
     sendMessage(senderId, { text: `Sorry, I don't understand your request.` });
   }
