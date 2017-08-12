@@ -170,9 +170,9 @@ function findMovie(userId, movieTitle) {
       title: themoviedb.results.original_title,
       plot: themoviedb.results.overview,
       date: themoviedb.results.date,
-      poster_url: themoviedb.results.poster_path,
-      console.log(themoviedb.results.original_title);
+      poster_url: themoviedb.results.poster_path
     };
+    console.log(themoviedb.results.original_title);
     const options = { upsert: true };
     Movie
       .findOneAndUpdate(query, update, options)
