@@ -166,14 +166,14 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: original_title,
+      title: TMDB.original_title,
       plot: movieObj.Plot,
       date: movieObj.Released,
       runtime: movieObj.Runtime,
       director: movieObj.Director,
       cast: movieObj.Actors,
       rating: movieObj.imdbRating,
-      poster_url: poster_path
+      poster_url: movieObj.Poster
     };
     const options = { upsert: true };
     Movie
@@ -186,9 +186,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: original_title,
+                title: movieObj.Title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: poster_path === 'N/A' ? 'http://placehold.it/350x150' : poster_path,
+                image_url: movieObj.Poster === 'N/A' ? 'http://placehold.it/350x150' : movieObj.Poster,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
