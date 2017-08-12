@@ -166,7 +166,7 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: TMDB.original_title,
+      title: themoviedb.original_title,
       plot: movieObj.Plot,
       date: movieObj.Released,
       runtime: movieObj.Runtime,
