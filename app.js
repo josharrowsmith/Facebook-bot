@@ -138,7 +138,7 @@ function processMessage(event) {
       case 'hello':
       sendMessage(senderId, { text: `wassup.` });
 
-      case "top 10";
+      case "top 10":
         TopTen(senderId,formattedMessage);
 
     }
