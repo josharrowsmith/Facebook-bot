@@ -156,7 +156,7 @@ function findMovie(userId, movieTitle) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
 
-    const results= JSON.parse(body);
+    const themoviedb = JSON.parse(body);
     //console.log(themoviedb);
 
     if (themoviedb.Response === 'False') {
@@ -167,10 +167,10 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: results.original_title,
-      plot: results.overview,
-      date: results.date,
-      poster_url: results.poster_path
+      title: themoviedb.results[0].original_title,
+      plot: themoviedb.results.overview,
+      date: themoviedb.results.date,
+      poster_url: themoviedb.results.poster_path
     };
 
 
@@ -185,7 +185,7 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: results.original_title,
+                title:themoviedb.results[0].original_title ,
                 subtitle: 'Is this the movie you are looking for?',
                 image_url: "http://seinfeld-v1.tripod.com/pictures/kramer/seinfeld_tkramer4.jpg",
                 buttons: [{
