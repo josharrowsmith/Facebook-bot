@@ -157,6 +157,7 @@ function findMovie(userId, movieTitle) {
     }
 
     const themoviedb = JSON.parse(body);
+    console.log(themoviedb);
 
     if (themoviedb.Response === 'False') {
       console.log(themoviedb.Error);
