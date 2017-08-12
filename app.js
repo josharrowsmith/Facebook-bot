@@ -135,6 +135,12 @@ function processMessage(event) {
       default:
         findMovie(senderId, formattedMessage);
 
+      case 'hello':
+      sendMessage(senderId, { text: `wassup.` });
+
+      case "top 10";
+
+    }
   } else if (message.attachments) {
     sendMessage(senderId, { text: `Sorry, I don't understand your request.` });
   }
@@ -207,66 +213,6 @@ function findMovie(userId, movieTitle) {
       .catch((error) => console.log(`Database error: ${error}`));
   });
 }
-
-function TopTen(userId, movieTitle) {
-  request("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=1ac2e46af3c6445c8f78d27dd6debcc1",function (error, response, body) {
-    if (error || response.statusCode !== 200) {
-      return sendMessage(userId, { text: `Something went wrong. Try again.` });
-    }
-
-    const themoviedb = JSON.parse(body);
-    //console.log(themoviedb);
-
-    if (themoviedb.Response === 'False') {
-      console.log(themoviedb.Error);
-      return sendMessage(userId, { text: themoviedb.Error });
-    }
-
-    const query = { user_id: userId };
-    const update = {
-      user_id: userId,
-      title: themoviedb.results[0].original_title,
-      plot: themoviedb.results[0].overview,
-      date: themoviedb.results[0].date,
-      poster_url: themoviedb.results[0].poster_path
-    };
-
-
-    const options = { upsert: true };
-    Movie
-      .findOneAndUpdate(query, update, options)
-      .exec()
-      .then(() => {
-        const message = {
-          attachment: {
-            type: 'template',
-            payload: {
-              template_type: 'generic',
-              elements: [{
-                title:themoviedb.results[0].original_title ,
-                subtitle: 'Is this the movie you are looking for?',
-                image_url: "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path === 'N/A' ? 'http://placehold.it/350x150' : "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path,
-
-                buttons: [{
-                  type: 'postback',
-                  title: 'Yes',
-                  payload: 'Correct'
-                }, {
-                  type: 'postback',
-                  title: 'No',
-                  payload: 'Incorrect'
-                }]
-              }]
-            }
-          }
-        };
-
-        sendMessage(userId, message);
-      })
-      .catch((error) => console.log(`Database error: ${error}`));
-  });
-}
-
 
 function sendMessage(recipientId, message) {
   console.log(`sending ${message.text} to ${recipientId}`);
