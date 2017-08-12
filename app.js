@@ -185,7 +185,7 @@ function findMovie(userId, movieTitle) {
               elements: [{
                 title: 'batman',
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: ,
+                image_url: "http://seinfeld-v1.tripod.com/pictures/kramer/seinfeld_tkramer4.jpg",
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
