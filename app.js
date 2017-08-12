@@ -166,14 +166,14 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: themoviedb.original_title,
-      plot: themoviedb.Plot,
-      date: themoviedb.Released,
-      runtime: themoviedb.Runtime,
-      director: themoviedb.Director,
-      cast: themoviedb.Actors,
-      rating: themoviedb.imdbRating,
-      poster_url: themoviedb.poster_path
+      title: date.original_title,
+      plot: date.Plot,
+      date: date.Released,
+      runtime: date.Runtime,
+      director: date.Director,
+      cast: date.Actors,
+      rating: date.imdbRating,
+      poster_url: date.poster_path
     };
     const options = { upsert: true };
     Movie
