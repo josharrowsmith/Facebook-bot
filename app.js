@@ -166,14 +166,14 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: date.original_title,
-      plot: date.Plot,
-      date: date.Released,
-      runtime: date.Runtime,
-      director: date.Director,
-      cast: date.Actors,
-      rating: date.imdbRating,
-      poster_url: date.poster_path
+      title: themoviedb.original_title,
+      plot: themoviedb.Plot,
+      date: themoviedb.Released,
+      runtime: themoviedb.Runtime,
+      director: themoviedb.Director,
+      cast: themoviedb.Actors,
+      rating: themoviedb.imdbRating,
+      poster_url: themoviedb.poster_path
     };
     const options = { upsert: true };
     Movie
@@ -188,7 +188,7 @@ function findMovie(userId, movieTitle) {
               elements: [{
                 title: themoviedb.original_title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: themoviedb.Poster === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.poster_path,
+                image_url: themoviedb.poster_path === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.poster_path,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
