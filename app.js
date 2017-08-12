@@ -135,7 +135,7 @@ function processMessage(event) {
       default:
         findMovie(senderId, formattedMessage);
 
-      case:'hello':
+      case 'hello':
       sendMessage(senderId, { text: `wassup.` });
     }
   } else if (message.attachments) {
