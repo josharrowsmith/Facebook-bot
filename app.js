@@ -182,9 +182,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: themoviedb.original_title,
+                title: themoviedb."stuff",
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: themoviedb.poster_path === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.poster_path,
+                image_url: www.google.com === 'N/A' ? 'http://placehold.it/350x150' : www.google.com,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
