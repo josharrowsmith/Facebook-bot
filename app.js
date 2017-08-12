@@ -167,11 +167,12 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: themoviedb.results.original_title,
-      plot: themoviedb.results.overview,
-      date: themoviedb.results.date,
-      poster_url: themoviedb.results.poster_path
+      title: results.original_title,
+      plot: results.overview,
+      date: results.date,
+      poster_url: results.poster_path
     };
+
 
     const options = { upsert: true };
     Movie
@@ -184,7 +185,7 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: "batman",
+                title: results.original_title,
                 subtitle: 'Is this the movie you are looking for?',
                 image_url: "http://seinfeld-v1.tripod.com/pictures/kramer/seinfeld_tkramer4.jpg",
                 buttons: [{
@@ -200,7 +201,7 @@ function findMovie(userId, movieTitle) {
             }
           }
         };
-        console.log(themoviedb.results.original_title);
+
         sendMessage(userId, message);
       })
       .catch((error) => console.log(`Database error: ${error}`));
