@@ -151,29 +151,26 @@ function getMovieDetail(userId, field) {
 function findMovie(userId, movieTitle) {
   //https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
   //"http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93"
-  request("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93", function (error, response, body) {
+  request("https://api.themoviedb.org/3/search/movie?&api_key=1ac2e46af3c6445c8f78d27dd6debcc1&query=" + movieTitle, function (error, response, body) {
     if (error || response.statusCode !== 200) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
 
-    const movieObj = JSON.parse(body);
+    const themoviedb = JSON.parse(body);
+    console.log(themoviedb);
 
-    if (movieObj.Response === 'False') {
-      console.log(movieObj.Error);
-      return sendMessage(userId, { text: movieObj.Error });
+    if (themoviedb.Response === 'False') {
+      console.log(themoviedb.Error);
+      return sendMessage(userId, { text: themoviedb.Error });
     }
 
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: movieObj.Title,
-      plot: movieObj.Plot,
-      date: movieObj.Released,
-      runtime: movieObj.Runtime,
-      director: movieObj.Director,
-      cast: movieObj.Actors,
-      rating: movieObj.imdbRating,
-      poster_url: movieObj.Poster
+      title: themoviedb.original_title,
+      plot: themoviedb.overview,
+      date: themoviedb.date,
+      poster_url: themoviedb.poster_path
     };
     const options = { upsert: true };
     Movie
@@ -186,9 +183,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: movieObj.Title,
+                title: themoviedb.original_title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: movieObj.Poster === 'N/A' ? 'http://placehold.it/350x150' : movieObj.Poster,
+                image_url: themoviedb.poster_path === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.poster_path,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
