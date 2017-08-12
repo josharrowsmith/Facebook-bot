@@ -156,24 +156,24 @@ function findMovie(userId, movieTitle) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
 
-    const movieObj = JSON.parse(body);
+    const themoviedb = JSON.parse(body);
 
-    if (movieObj.Response === 'False') {
-      console.log(movieObj.Error);
-      return sendMessage(userId, { text: movieObj.Error });
+    if (themoviedb.Response === 'False') {
+      console.log(themoviedb.Error);
+      return sendMessage(userId, { text: themoviedb.Error });
     }
 
     const query = { user_id: userId };
     const update = {
       user_id: userId,
       title: themoviedb.original_title,
-      plot: movieObj.Plot,
-      date: movieObj.Released,
-      runtime: movieObj.Runtime,
-      director: movieObj.Director,
-      cast: movieObj.Actors,
-      rating: movieObj.imdbRating,
-      poster_url: movieObj.Poster
+      plot: themoviedb.Plot,
+      date: themoviedb.Released,
+      runtime: themoviedb.Runtime,
+      director: themoviedb.Director,
+      cast: themoviedb.Actors,
+      rating: themoviedb.imdbRating,
+      poster_url: themoviedb.Poster
     };
     const options = { upsert: true };
     Movie
@@ -186,9 +186,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: movieObj.Title,
+                title: themoviedb.Title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: movieObj.Poster === 'N/A' ? 'http://placehold.it/350x150' : movieObj.Poster,
+                image_url: themoviedb.Poster === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.Poster,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
