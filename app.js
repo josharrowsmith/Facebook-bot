@@ -170,7 +170,7 @@ function findMovie(userId, movieTitle) {
       title: themoviedb.results[0].original_title,
       plot: themoviedb.results.overview,
       date: themoviedb.results.date,
-      poster_url: "https://image.tmdb.org/t/p/w500/"themoviedb.results.poster_path
+      poster_url: themoviedb.results.poster_path
     };
 
 
@@ -187,7 +187,8 @@ function findMovie(userId, movieTitle) {
               elements: [{
                 title:themoviedb.results[0].original_title ,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: themoviedb.results[0].poster_path === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.results[0].poster_path,
+                image_url: "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path === 'N/A' ? 'http://placehold.it/350x150' : "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path,
+
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
