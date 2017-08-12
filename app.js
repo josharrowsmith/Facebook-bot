@@ -151,7 +151,7 @@ function getMovieDetail(userId, field) {
 function findMovie(userId, movieTitle) {
   //https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
   //"http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93"
-  request("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93" function (error, response, body) {
+  request("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93", function (error, response, body) {
     if (error || response.statusCode !== 200) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
