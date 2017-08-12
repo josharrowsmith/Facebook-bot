@@ -167,7 +167,7 @@ function findMovie(userId, movieTitle) {
     const query = { user_id: userId };
     const update = {
       user_id: userId,
-      title: themoviedb.original_title,
+      title: results.themoviedb.original_title,
       plot: themoviedb.overview,
       date: themoviedb.date,
       poster_url: themoviedb.poster_path
@@ -183,7 +183,7 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: themoviedb.original_title,
+                title: results.themoviedb.original_title,
                 subtitle: 'Is this the movie you are looking for?',
                 image_url: "http://seinfeld-v1.tripod.com/pictures/kramer/seinfeld_tkramer4.jpg",
                 buttons: [{
