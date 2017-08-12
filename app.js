@@ -187,7 +187,7 @@ function findMovie(userId, movieTitle) {
               elements: [{
                 title:themoviedb.results[0].original_title ,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: "http://seinfeld-v1.tripod.com/pictures/kramer/seinfeld_tkramer4.jpg",
+                image_url: mthemoviedb.results[0].poster_path === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.results[0].poster_path,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
