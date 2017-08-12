@@ -135,12 +135,12 @@ function processMessage(event) {
       default:
         findMovie(senderId, formattedMessage);
 
-  } else if {
-
-  }
-  else(message.attachments) {
+      case:'hello':
+      sendMessage(senderId, { text: `wassup.` });
+    }
+  } else if (message.attachments) {
     sendMessage(senderId, { text: `Sorry, I don't understand your request.` });
-
+  }
 }
 
 function getMovieDetail(userId, field) {
