@@ -135,6 +135,10 @@ function processMessage(event) {
       default:
         findMovie(senderId, formattedMessage);
     }
+    else if{
+      "hello":
+      sendMessage(senderId, { text: `hello.` });
+    }
   } else if (message.attachments) {
     sendMessage(senderId, { text: `Sorry, I don't understand your request.` });
   }
