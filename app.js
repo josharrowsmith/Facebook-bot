@@ -171,6 +171,7 @@ function findMovie(userId, movieTitle) {
       plot: themoviedb.results.overview,
       date: themoviedb.results.date,
       poster_url: themoviedb.results.poster_path
+      console.log(themoviedb.results.original_title);
     };
     const options = { upsert: true };
     Movie
