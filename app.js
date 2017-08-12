@@ -173,7 +173,7 @@ function findMovie(userId, movieTitle) {
       director: themoviedb.Director,
       cast: themoviedb.Actors,
       rating: themoviedb.imdbRating,
-      poster_url: themoviedb.Poster
+      poster_url: themoviedb.poster_path
     };
     const options = { upsert: true };
     Movie
@@ -186,9 +186,9 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: themoviedb.Title,
+                title: themoviedb.original_title,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: themoviedb.Poster === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.Poster,
+                image_url: themoviedb.Poster === 'N/A' ? 'http://placehold.it/350x150' : themoviedb.poster_path,
                 buttons: [{
                   type: 'postback',
                   title: 'Yes',
