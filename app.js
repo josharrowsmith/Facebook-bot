@@ -156,7 +156,7 @@ function findMovie(userId, movieTitle) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
 
-    const themoviedb = JSON.parse(body);
+    const results= JSON.parse(body);
     //console.log(themoviedb);
 
     if (themoviedb.Response === 'False') {
