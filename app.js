@@ -183,7 +183,7 @@ function findMovie(userId, movieTitle) {
             payload: {
               template_type: 'generic',
               elements: [{
-                title: themoviedb.results.original_title,
+                title: "batman",
                 subtitle: 'Is this the movie you are looking for?',
                 image_url: "http://seinfeld-v1.tripod.com/pictures/kramer/seinfeld_tkramer4.jpg",
                 buttons: [{
