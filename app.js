@@ -170,7 +170,7 @@ function findMovie(userId, movieTitle) {
       title: themoviedb.results[0].original_title,
       plot: themoviedb.results.overview,
       date: themoviedb.results.date,
-      poster_url: themoviedb.results.poster_path
+      poster_url: "https://image.tmdb.org/t/p/w500/"themoviedb.results.poster_path
     };
 
 
