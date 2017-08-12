@@ -132,9 +132,9 @@ function processMessage(event) {
         getMovieDetail(senderId, formattedMessage);
         break;
 
-        case "movie":
+      default:
         findMovie(senderId, formattedMessage);
-}
+
   } else if (message.attachments) {
     sendMessage(senderId, { text: `Sorry, I don't understand your request.` });
   }
