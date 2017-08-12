@@ -172,7 +172,7 @@ function findMovie(userId, movieTitle) {
       date: themoviedb.results.date,
       poster_url: themoviedb.results.poster_path
     };
-    console.log(themoviedb.results.original_title);
+
     const options = { upsert: true };
     Movie
       .findOneAndUpdate(query, update, options)
@@ -200,6 +200,7 @@ function findMovie(userId, movieTitle) {
             }
           }
         };
+        console.log(themoviedb.results.original_title);
         sendMessage(userId, message);
       })
       .catch((error) => console.log(`Database error: ${error}`));
