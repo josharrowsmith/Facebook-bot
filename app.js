@@ -91,7 +91,7 @@ function processPostback(event) {
         console.log(`name: ${nameGreeting}, sender: ${senderId}`);
 
         const text = nameGreeting +
-          `My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?`;
+          `Suh dude ,what movie would you like to know about?`;
 
         sendMessage(senderId, { text });
       });
@@ -170,7 +170,10 @@ function findMovie(userId, movieTitle) {
       title: themoviedb.results[0].original_title,
       plot: themoviedb.results[0].overview,
       date: themoviedb.results[0].date,
-      poster_url: themoviedb.results[0].poster_path
+      poster_url: themoviedb.results[0].poster_path,
+      rating: themoviedb.results[0].vote_average,
+      runtime: themoviedb.results[0].,
+      director: themoviedb.results[0].director
     };
 
 
