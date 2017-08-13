@@ -91,7 +91,7 @@ function processPostback(event) {
         console.log(`name: ${nameGreeting}, sender: ${senderId}`);
 
         const text = nameGreeting +
-          `Suh dude ,what movie would you like to know about?`;
+          `what movie would you like to know about?`;
 
         sendMessage(senderId, { text });
       });
