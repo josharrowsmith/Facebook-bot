@@ -172,7 +172,7 @@ function findMovie(userId, movieTitle) {
       date: themoviedb.results[0].date,
       poster_url: themoviedb.results[0].poster_path,
       rating: themoviedb.results[0].vote_average,
-      runtime: themoviedb.results[0].,
+      runtime: themoviedb.results[0].runtime,
       director: themoviedb.results[0].director
     };
 
