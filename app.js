@@ -91,7 +91,7 @@ function processPostback(event) {
         console.log(`name: ${nameGreeting}, sender: ${senderId}`);
 
         const text = nameGreeting +
-          `what movie would you like to know about?`;
+          `Suh dude ,what movie would you like to know about?`;
 
         sendMessage(senderId, { text });
       });
@@ -190,7 +190,7 @@ function findMovie(userId, movieTitle) {
               elements: [{
                 title:themoviedb.results[0].original_title ,
                 subtitle: 'Is this the movie you are looking for?',
-                image_url: "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path === 'N/A' ? 'http://placehold.it/550x250' : "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path,
+                image_url: "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path === 'N/A' ? 'http://placehold.it/400x400' : "https://image.tmdb.org/t/p/w500/"+ themoviedb.results[0].poster_path,
 
                 buttons: [{
                   type: 'postback',
