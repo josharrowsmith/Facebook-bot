@@ -1,10 +1,10 @@
 {
-  "name": "spbot",
+  "name": "facebot",
   "version": "1.0.0",
-  "description": "SPBot Server",
+  "description": "facebook bot",
   "main": "app.js",
   "repository": {},
-  "author": "Camilo Orrego",
+  "author": "Josh",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.16.0",

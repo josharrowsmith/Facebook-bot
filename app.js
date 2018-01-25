@@ -7,8 +7,7 @@ const mongoose = require('mongoose');
 
 
 mongoose.Promise = global.Promise;
-const db = mongoose.connect("mongodb://josh:yellow@ds035603.mlab.com:35603/spbot", { useMongoClient: true });
-//mongoose.connect(`mongodb://localhost:27017/${GITHUB_ISSUE}`, { useMongoClient: true })
+const db = mongoose.connect("mongodb://username:passwordw@mlab.com:35603/dbname", { useMongoClient: true });
 const Movie = require('./models/movie');
 
 Promise.reject(new Error('woops'));
@@ -149,9 +148,8 @@ function getMovieDetail(userId, field) {
 }
 
 function findMovie(userId, movieTitle) {
-  //https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
-  //"http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7e0bbc93"
-  request("https://api.themoviedb.org/3/search/movie?&api_key=1ac2e46af3c6445c8f78d27dd6debcc1&query=" + movieTitle, function (error, response, body) {
+
+  request("https://api.themoviedb.org/3/search/movie?&api_key=serect&query=" + movieTitle, function (error, response, body) {
     if (error || response.statusCode !== 200) {
       return sendMessage(userId, { text: `Something went wrong. Try again.` });
     }
